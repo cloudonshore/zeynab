@@ -10,6 +10,10 @@ var handlebars = require('express-handlebars');
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
 
+var isProduction = process.env.NODE_ENV === 'production';
+//var port = isProduction ? process.env.PORT : 3000;
+var port = process.env.PORT || 8080;
+
 keystone.init({
 
 	'name': 'zeynab',
@@ -20,7 +24,7 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'hbs',
-	
+	'port':port,
 	'custom engine': handlebars.create({
 		layoutsDir: 'templates/views/layouts',
 		partialsDir: 'templates/views/partials',
