@@ -12,7 +12,7 @@ var handlebars = require('express-handlebars');
 
 var isProduction = process.env.NODE_ENV === 'production';
 //var port = isProduction ? process.env.PORT : 3000;
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 keystone.init({
 
@@ -49,7 +49,7 @@ keystone.import('models');
 // for each request) should be added to ./routes/middleware.js
 
 keystone.set('locals', {
-	_: require('underscore'),
+	_: require('lodash'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable

@@ -22,6 +22,12 @@ var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
+// Pass your keystone instance to the module
+var restful = require('restful-keystone')(keystone);
+
+var httpProxy = require('http-proxy');
+var proxy = httpProxy.createProxyServer();
+
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
@@ -33,13 +39,27 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function(app) {
-	
 	// Views
-	app.get('/', routes.views.index);
+	
+	//app.get('/about', routes.views.index);
 	app.get('/gallery', routes.views.gallery);
 	
-	
+	var bundle = require('./bundler/bundler.js');
+	bundle();
+	// Any requests to localhost:3000/build is proxied
+	// to webpack-dev-server
+	app.all('/build/*', function (req, res) {
+	    proxy.web(req, res, {
+	        target: 'http://localhost:8080'
+	    });
+  	});
+
+    restful.expose({
+    	Gallery : true,
+    	User: true
+  	}).start();
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
-	
+	app.get('/', routes.views.index);
+	app.get('*', routes.views.index);
 };
