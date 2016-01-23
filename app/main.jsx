@@ -1,10 +1,15 @@
+import 'main.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
 import { Router, Route, IndexRoute, Link } from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory';
+import Home from 'Home';
 
-const API_BASE = '/keystone/api/'
+const API_BASE = '/api/'
+
+
+
 
 const App = React.createClass({
 	getInitialState(){
@@ -15,16 +20,14 @@ const App = React.createClass({
 	},
 	componentWillMount(){
 		request
-			.get(API_BASE+'Gallery')
+			.get(API_BASE+'galleries')
 			.end((err, res)=>{
-				this.setState({projects:res.body.results});
+				this.setState({projects:res.body.galleries});
 			});
 		request
-			.get(API_BASE+'AppText')
+			.get(API_BASE+'app-texts')
 			.end((err, res)=>{
-				if(res.body.results.length){
-					this.setState({about:res.body.results[0].fields});
-				}
+				this.setState({about:res.body['app-texts'][0]});
 			});
 	},
 	render(){
@@ -32,7 +35,7 @@ const App = React.createClass({
 		const children = React.Children.map(this.props.children,(child)=>{
 			return React.cloneElement(child, { projects: projects,about:about});
 		});
-		return <div>
+		return <div className="example">
 		        <ul>
 		          <li><Link to="/">Home</Link></li>
 		          <li><Link to="/about">About</Link></li>
@@ -42,28 +45,7 @@ const App = React.createClass({
 	}
 });
 
-const Home = React.createClass({
-	render(){
-		const {projects} = this.props;
 
-		const previews = projects.map((project)=>{
-			const {name,images} = project.fields;
-
-			const pics = images.map((image)=>{
-				return <div key={image._id}><img src={image.url} width={500} /></div>
-			});
-
-			return <div key={name}> 
-				   		<h2>{name}</h2>
-				   		{pics}
-				</div>;
-		});
-		return <div>
-				<h1>Home</h1>
-				{previews}
-			</div>;
-	}
-});
 
 const About = React.createClass({
 	render(){

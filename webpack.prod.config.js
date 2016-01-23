@@ -2,31 +2,15 @@ var webpack = require('webpack');
 var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'public', 'build');
-var mainPath = path.resolve('app', 'main.jsx');
+var mainPath = path.resolve(__dirname,'app', 'main.jsx');
 
 module.exports = {
-	//context: __dirname + "/src",
-	entry: {
-		App: [
-		    //The script refreshing the browser on non hot updates
-			'webpack-dev-server/client?http://localhost:8080',
-			//for hot style updates
-			'webpack/hot/dev-server', 
-			//our app
-			mainPath
-		]
-	},
+	devtool: 'source-map',
+	entry: mainPath,
 	output: {
     	filename: 'bundle.js', // Will output App_wp_bundle.js
     	path: buildPath, // Save to Rails Asset Pipeline
-  		publicPath: '/build/' // Required for webpack-dev-server
 	},
-	plugins: [  
-  		new webpack.HotModuleReplacementPlugin()
-	],
-	resolve: {
-    	extensions: ['', '.js', '.jsx']
-  	},
   	module: {
 		loaders: [
 	    // I highly recommend using the babel-loader as it gives you
@@ -45,7 +29,11 @@ module.exports = {
 	    {
 		    test: /\.css$/,
 		    loader: 'style!css'
-	    }
+	    },
+	    {
+        	test: /\.less$/,
+        	loader: "style!css!less"
+      	}
    	]
  	}
 };
