@@ -53,7 +53,7 @@
   },
   "scripts": {
     "start": "node keystone.js",
-    "postinstall": "node deploy"
+    "postinstall": "node deploy.js"
   },
   "main": "keystone.js"
 }
