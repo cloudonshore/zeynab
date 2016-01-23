@@ -28,7 +28,7 @@
     "css-loader": "^0.23.1",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
-    "style-loader": "^0.13.0",
+    "style-loader": "^0.13.0"
   },
   "devDependencies": {
     "browserify": "^11.1.0",

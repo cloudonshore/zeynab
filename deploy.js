@@ -1,8 +1,8 @@
 // Since postinstall will also run when you run npm install
 // locally we make sure it only runs in production
-  console.log("IM DEPLOYING THIS BITCH")
-//if (process.env.NODE_ENV === 'production') {
-
+  
+if (process.env.NODE_ENV === 'production') {
+console.log("IM DEPLOYING THIS BITCH")
   // We basically just create a child process that will run
   // the production bundle command
   var child_process = require('child_process');
@@ -13,4 +13,4 @@
       console.log('exec error: ' + error);
     }
   });
-//}
+}
