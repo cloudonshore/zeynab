@@ -11,6 +11,12 @@ module.exports = {
     	filename: 'bundle.js', // Will output App_wp_bundle.js
     	path: buildPath, // Save to Rails Asset Pipeline
 	},
+	resolve: {
+    	extensions: ['', '.js', '.jsx'],
+    	root: [
+		    path.resolve(__dirname,'app'), path.resolve(__dirname, 'node_modules')
+		  ]
+  	},
   	module: {
 		loaders: [
 	    // I highly recommend using the babel-loader as it gives you
