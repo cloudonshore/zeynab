@@ -7,23 +7,21 @@ const Home = React.createClass({
 		const previews = projects.map((project)=>{
 			const {name,images} = project;
 
-			const pics = images.map((image)=>{
-				return <div key={image._id}><img src={image.url} width={500} /></div>
-			});
+			//const pics = images.map((image)=>{
+			//	return 
+			//});
 
-			return <div key={name}> 
-				   		<h2>{name}</h2>
-				   		{pics}
+			return <div key={name} className="project-preview-container"> 
+						<div className="image-container"><img src={images[0].url} width={500} /></div>
+				   		<div className="project-title-div">{name}</div>
 				</div>;
 		});
 		return <div>
-				<h1>Home</h1>
-				<button className="btn btn-default">yo</button>
 				{previews}
 			</div>;		
 	},
 	render(){
-		return <div></div>;
+		return <div className="home-container">{this.renderPics()}</div>;
 	}
 });
 

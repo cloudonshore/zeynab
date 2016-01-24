@@ -33,8 +33,8 @@ const App = React.createClass({
 	},
 	renderNav(){
 		return  <div className="main-nav">
-		          <Link className="home" to="/">Zeynab Ghandour</Link>
-		          <Link className="about" to="/about">About</Link>
+		          <Link className="home" to="/">ZEYNAB GHANDOUR</Link>
+		          <Link className="about" to="/about">ABOUT</Link>
 		        </div>;
 	},
 	render(){

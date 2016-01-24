@@ -29,7 +29,7 @@ const Background = React.createClass({
             }
             hPath.add(new paper.Point(width + 50,i));
             hPath.smooth();
-  	 		hPath.strokeColor = '#fff';
+  	 		hPath.strokeColor = '#000';
   	 		this.hPaths.push(hPath);
   	 	}
   	 	for(i=-50;i<width +50;i+=40){
@@ -40,13 +40,13 @@ const Background = React.createClass({
             }
             vPath.add(new paper.Point(i,height + 50));
             vPath.smooth();
-  	 		vPath.strokeColor = '#fff';	 		
+  	 		vPath.strokeColor = '#000';	 		
   	 		this.vPaths.push(vPath);
   	 	}
 
 
 		paper.view.draw();
-		paper.view.onFrame = _.throttle(this._tick,50);
+		paper.view.onFrame = _.throttle(this._tick,100);
   },
   _tick(event){
   	//console.log(event.time + Math.random());
