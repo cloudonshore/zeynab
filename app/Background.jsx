@@ -29,7 +29,7 @@ const Background = React.createClass({
             }
             hPath.add(new paper.Point(width + 50,i));
             hPath.smooth();
-  	 		hPath.strokeColor = '#000';
+  	 		hPath.strokeColor = 'rgba(0, 0, 0, .2)';
   	 		this.hPaths.push(hPath);
   	 	}
   	 	for(i=-50;i<width +50;i+=40){
@@ -40,7 +40,7 @@ const Background = React.createClass({
             }
             vPath.add(new paper.Point(i,height + 50));
             vPath.smooth();
-  	 		vPath.strokeColor = '#000';	 		
+  	 		vPath.strokeColor = 'rgba(0, 0, 0, .2)';	 		
   	 		this.vPaths.push(vPath);
   	 	}
 
