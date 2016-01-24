@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Home = React.createClass({
-	render(){
-		const {projects} = this.props;
+	renderPics(){
+				const {projects} = this.props;
 
 		const previews = projects.map((project)=>{
 			const {name,images} = project;
@@ -20,7 +20,10 @@ const Home = React.createClass({
 				<h1>Home</h1>
 				<button className="btn btn-default">yo</button>
 				{previews}
-			</div>;
+			</div>;		
+	},
+	render(){
+		return <div></div>;
 	}
 });
 

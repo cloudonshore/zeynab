@@ -5,6 +5,7 @@ import request from 'superagent';
 import { Router, Route, IndexRoute, Link } from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import Home from 'Home';
+import Background from 'Background';
 
 const API_BASE = '/api/'
 
@@ -30,16 +31,19 @@ const App = React.createClass({
 				this.setState({about:res.body['app-texts'][0]});
 			});
 	},
+	renderNav(){
+		return 		        <ul>
+		          <li><Link to="/">Home</Link></li>
+		          <li><Link to="/about">About</Link></li>
+		        </ul>;
+	},
 	render(){
 		const {projects,about} = this.state;
 		const children = React.Children.map(this.props.children,(child)=>{
 			return React.cloneElement(child, { projects: projects,about:about});
 		});
 		return <div className="example">
-		        <ul>
-		          <li><Link to="/">Home</Link></li>
-		          <li><Link to="/about">About</Link></li>
-		        </ul>
+				<Background />
 				{children}
 			</div>;
 	}
