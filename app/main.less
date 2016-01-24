@@ -15,7 +15,17 @@
 @shadow-color: rgba(100, 100, 100, .5);
 @shadow-nav: rgba(100, 100, 100, .2);
 
+//new styles
+//
+//padding: 
+
+
 .main-nav {
+	@media screen and (min-width: 630px) {
+		height: 200px;
+		padding: 50px 60px;
+	}
+
 	position: fixed;
     z-index: 900;
     top: 0;
@@ -24,7 +34,7 @@
     height: 130px;
     padding: 10px 20px;
     background-color: white;
-    background: linear-gradient(to top,transparent 0,transparent 2%,rgba(100,100,100,.1)100%);
+    background: linear-gradient(to top,transparent 0,transparent 2%,rgba(100,100,100,.15)100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#38000000', GradientType=0);
     display:flex;
     justify-content: space-between;
