@@ -4,7 +4,7 @@ import paper from 'paper';
 import _ from 'lodash';
 
 var offset = 0;
-
+const color = 'rgba(100, 100, 100, .2)';
 const Background = React.createClass({
   componentDidMount: function() {
   	this.hPaths = [];
@@ -29,7 +29,8 @@ const Background = React.createClass({
             }
             hPath.add(new paper.Point(width + 50,i));
             hPath.smooth();
-  	 		hPath.strokeColor = 'rgba(0, 0, 0, .2)';
+            hPath.strokeWidth = 1;
+  	 		hPath.strokeColor = color;
   	 		this.hPaths.push(hPath);
   	 	}
   	 	for(i=-50;i<width +50;i+=40){
@@ -40,13 +41,14 @@ const Background = React.createClass({
             }
             vPath.add(new paper.Point(i,height + 50));
             vPath.smooth();
-  	 		vPath.strokeColor = 'rgba(0, 0, 0, .2)';	 		
+            vPath.strokeWidth = 1;
+  	 		vPath.strokeColor = color;	 		
   	 		this.vPaths.push(vPath);
   	 	}
 
 
 		paper.view.draw();
-		paper.view.onFrame = _.throttle(this._tick,50);
+		paper.view.onFrame = this._tick;//_.throttle(this._tick,100);
   },
   _tick(event){
   	//console.log(event.time + Math.random());

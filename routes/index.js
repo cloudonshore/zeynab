@@ -45,6 +45,7 @@ exports = module.exports = function(app) {
 	
 	app.get('/about', routes.views.index);
 	app.get('/gallery', routes.views.gallery);
+	app.get('/projects/*', routes.views.index);
 	
 
 	if (!isProduction) {

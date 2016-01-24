@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, Link } from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import Home from 'Home';
 import Background from 'Background';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const API_BASE = '/api/'
 
@@ -39,17 +40,26 @@ const App = React.createClass({
 	},
 	render(){
 		const {projects,about} = this.state;
-		const children = React.Children.map(this.props.children,(child)=>{
-			return React.cloneElement(child, { projects: projects,about:about});
-		});
-		return <div className="example">
+		//const children = React.Children.map(this.props.children,(child)=>{
+		//	return React.cloneElement(child, { projects: projects,about:about});
+		//});
+		return <div>
 				{this.renderNav()}
-				<Background />
-				{children}
+			
+				{React.cloneElement(this.props.children,{projects: projects,about:about, key: this.props.location.pathname})}
+				
 			</div>;
 	}
 });
 
+/*
+	<ReactCSSTransitionGroup
+			          transitionName="example"
+			          transitionEnterTimeout={500}
+			          transitionLeaveTimeout={500}
+			        >
+    </ReactCSSTransitionGroup>
+    */
 
 
 const About = React.createClass({

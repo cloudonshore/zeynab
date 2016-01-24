@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link } from 'react-router';
 
 const Home = React.createClass({
 	renderPics(){
@@ -10,12 +11,13 @@ const Home = React.createClass({
 			//const pics = images.map((image)=>{
 			//	return 
 			//});
-
 			return <div key={name} className="project-preview-container"> 
+						<Link to={"/projects/" + project._id}>
 						<div className="image-container">
 							<img src={images[0].url} className="project-preview-image" />
 							<div className="project-title-div">{name}</div>
 						</div>
+						</Link>
 				   		
 				</div>;
 		});

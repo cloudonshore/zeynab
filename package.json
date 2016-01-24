@@ -23,6 +23,7 @@
     "moment": "^2.10.6",
     "paper": "^0.9.25",
     "react": "^0.14.6",
+    "react-addons-css-transition-group": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",
     "restful-keystone": "^0.3.0",
