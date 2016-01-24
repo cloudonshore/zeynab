@@ -32,10 +32,10 @@ const App = React.createClass({
 			});
 	},
 	renderNav(){
-		return 		        <ul>
-		          <li><Link to="/">Home</Link></li>
-		          <li><Link to="/about">About</Link></li>
-		        </ul>;
+		return  <div className="main-nav">
+		          <Link className="home" to="/">Zeynab Ghandour</Link>
+		          <Link className="about" to="/about">About</Link>
+		        </div>;
 	},
 	render(){
 		const {projects,about} = this.state;
@@ -43,6 +43,7 @@ const App = React.createClass({
 			return React.cloneElement(child, { projects: projects,about:about});
 		});
 		return <div className="example">
+				{this.renderNav()}
 				<Background />
 				{children}
 			</div>;
