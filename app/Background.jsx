@@ -46,7 +46,7 @@ const Background = React.createClass({
 
 
 		paper.view.draw();
-		paper.view.onFrame = _.throttle(this._tick,100);
+		paper.view.onFrame = _.throttle(this._tick,50);
   },
   _tick(event){
   	//console.log(event.time + Math.random());

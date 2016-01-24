@@ -13,7 +13,7 @@ const Home = React.createClass({
 
 			return <div key={name} className="project-preview-container"> 
 						<div className="image-container">
-							<img src={images[0].url} width={500} />
+							<img src={images[0].url} className="project-preview-image" />
 							<div className="project-title-div">{name}</div>
 						</div>
 				   		
