@@ -15,14 +15,13 @@
 @shadow-color: rgba(100, 100, 100, .5);
 @shadow-nav: rgba(100, 100, 100, .2);
 
-//new styles
-//
-//padding: 
+@top-margin: 200px;
+@top-margin-mobile: 130px;
 
 
 .main-nav {
 	@media screen and (min-width: 630px) {
-		height: 200px;
+		height: @top-margin;
 		padding: 50px 60px;
 	}
 
@@ -31,7 +30,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 130px;
+    height: @top-margin-mobile;
     padding: 10px 20px;
     background-color: white;
     background: linear-gradient(to top,transparent 0,transparent 2%,rgba(100,100,100,.15)100%);
@@ -67,15 +66,29 @@
 	background-color: #fff;
 }
 
-.project-preview-container {
+
+.project-container.none {
+	height: 0px;
+}
+
+.project-container.preview {
+	height: 300px;
+}
+
+.project-container.full {
+	height: 800px;
+}
+
+.project-container {
 	max-width: 500px;
     position: relative;
     margin-bottom: 50px;
+    overflow: hidden;
+    .transition(all 300ms ease);
     .image-container {
     	width: 100%;
     	max-width: 500px;
-    	height: 300px;
-    	overflow: hidden;
+
     	box-shadow: 0px 0px 5px @shadow-color;
     	&:hover { box-shadow: 0px 0px 15px @shadow-color; } 
     	cursor: pointer;
@@ -98,8 +111,11 @@
 }
 
 .home-container { 
-    max-width: 800px;
-    margin: 100px auto;
+    max-width: 500px;
+    margin: (@top-margin-mobile - 50px) auto;
+    @media screen and (min-width: 630px) {
+		margin: (@top-margin - 50px) auto;
+	}
 }
 
 .route-enter {

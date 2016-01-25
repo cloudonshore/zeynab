@@ -1,31 +1,26 @@
 import React from 'react';
-import {Link } from 'react-router';
+import Project from 'Project';
+import _ from 'lodash';
 
 const Home = React.createClass({
 	renderPics(){
-				const {projects} = this.props;
+		const {history,location,params,projects} = this.props;
+		const {id} = params;
+		const projectSelected = history.isActive('projects/'+id);
 
 		const previews = projects.map((project)=>{
 			const {name,images} = project;
-
-			//const pics = images.map((image)=>{
-			//	return 
-			//});
-			return <div key={name} className="project-preview-container"> 
-						<Link to={"/projects/" + project._id}>
-						<div className="image-container">
-							<img src={images[0].url} className="project-preview-image" />
-							<div className="project-title-div">{name}</div>
-						</div>
-						</Link>
-				   		
-				</div>;
+			const display = (projectSelected?
+									(project._id==id?"full":"none")
+									:"preview");
+			return <Project key={name} {...project} display={display} />;
 		});
 		return <div>
 				{previews}
 			</div>;		
 	},
 	render(){
+
 		return <div className="home-container">{this.renderPics()}</div>;
 	}
 });

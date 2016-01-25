@@ -32,6 +32,9 @@ const App = React.createClass({
 				this.setState({about:res.body['app-texts'][0]});
 			});
 	},
+	componentDidMount(){
+
+	},
 	renderNav(){
 		return  <div className="main-nav">
 		          <Link className="home" to="/">ZEYNAB GHANDOUR</Link>
@@ -40,26 +43,17 @@ const App = React.createClass({
 	},
 	render(){
 		const {projects,about} = this.state;
-		//const children = React.Children.map(this.props.children,(child)=>{
-		//	return React.cloneElement(child, { projects: projects,about:about});
-		//});
+		this.children = React.Children.map(this.props.children,(child,i)=>{
+			return React.cloneElement(child, { projects: projects,about:about,key:i});
+		});
+
 		return <div>
 				{this.renderNav()}
 			
-				{React.cloneElement(this.props.children,{projects: projects,about:about, key: this.props.location.pathname})}
-				
+				{this.children}
 			</div>;
 	}
 });
-
-/*
-	<ReactCSSTransitionGroup
-			          transitionName="example"
-			          transitionEnterTimeout={500}
-			          transitionLeaveTimeout={500}
-			        >
-    </ReactCSSTransitionGroup>
-    */
 
 
 const About = React.createClass({
@@ -72,11 +66,8 @@ const About = React.createClass({
 	}
 });
 
-const Project = React.createClass({
-	render(){
-		return <div>project</div>;
-	}
-});
+
+
 
 
 const el = document.getElementById('container');
@@ -86,6 +77,6 @@ ReactDOM.render( <Router history={createBrowserHistory()}>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="about" component={About} />
-      <Route path="projects/:id" component={Project} />
+      <Route path="projects/:id" component={Home} name="projects" />
     </Route>
   </Router>, el);
