@@ -66,10 +66,20 @@ const Project = React.createClass({
 			else
 			sizeClass = 'left';
 			
-			return <img key={image.url} ref={"image" + i} src={image.url} className={"project-preview-image " + sizeClass} style={{width:icWidth + "px"}} />
+			return <img key={image.url} ref={"image" + i} src={image.url} className={"project-preview-image " + sizeClass}  />
 		});
-		// <button className="btn btn-default" >b</button>
-		// 			<button className="btn btn-default" >f</button>
+
+       if(images.length==1){
+       	  		return  <div className="project">
+					<div className="slider">
+				        <div className="image-container" style={imageContainerStyle} ref="ic">
+							{imagesDivs}
+							<div className="project-title-div">{name}</div>
+						</div>
+					</div>
+					<div className="project-description">{desciption}</div>
+				</div>;
+       } else {
 
 		return  <div className="project">
 					<div className="slider">
@@ -84,6 +94,7 @@ const Project = React.createClass({
 					</div>
 					<div className="project-description">{desciption}</div>
 				</div>;
+		}
 	},
 	render(){
 		const {name,images,_id,display} = this.props;
