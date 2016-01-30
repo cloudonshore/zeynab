@@ -59,8 +59,7 @@ const App = React.createClass({
 const About = React.createClass({
 	render(){
 		const {name,text} = this.props.about;
-		return <div>
-				<h1>{name}</h1>
+		return <div className="about-container">
 				<div dangerouslySetInnerHTML={{__html:text}}></div>
 			</div>;
 	}

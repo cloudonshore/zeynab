@@ -43,6 +43,8 @@ const Project = React.createClass({
 	},
 	renderPreviewContent(){
 		const {name,images,_id,display} = this.props;
+		const {ic} = this.refs;
+
 		return <Link to={"/projects/" + _id}>
 				<div className="image-container">
 					<img src={images[0].url} className="project-preview-image" />
@@ -64,17 +66,22 @@ const Project = React.createClass({
 			else
 			sizeClass = 'left';
 			
-			return <img key={image.url} ref={"image" + i} src={image.url} className={"project-preview-image " + sizeClass} />
+			return <img key={image.url} ref={"image" + i} src={image.url} className={"project-preview-image " + sizeClass} style={{width:icWidth + "px"}} />
 		});
+		// <button className="btn btn-default" >b</button>
+		// 			<button className="btn btn-default" >f</button>
 
-		return  <div>
-					<button className="btn btn-default" onClick={this.back}>b</button>
-					<button className="btn btn-default" onClick={this.forward}>f</button>
-			        <div className="image-container" style={imageContainerStyle} ref="ic">
-						{imagesDivs}
-						<div className="project-title-div">{name}</div>
+		return  <div className="project">
+					<div className="slider">
+						<div className="slide slide-left" onClick={this.back}><div className="arrow"></div></div>
+				        <div className="image-container" style={imageContainerStyle} ref="ic">
+							{imagesDivs}
+							<div className="project-title-div">{name}</div>
+							<div className="slider-screen slider-screen-left" onClick={this.back}></div>
+							<div className="slider-screen slider-screen-right" onClick={this.forward}></div>
+						</div>
+						<div className="slide slide-right" onClick={this.forward}><div className="arrow"></div></div>
 					</div>
-					
 					<div className="project-description">{desciption}</div>
 				</div>;
 	},
